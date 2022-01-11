@@ -1,1 +1,1 @@
-# haconfig
+# Home Assistant configurations/backups

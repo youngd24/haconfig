@@ -15,11 +15,7 @@ sensor:
   - platform: systemmonitor
     resources:
       - type: disk_use_percent
-        arg: /
-      - type: disk_use_percent
         arg: /config
-      - type: disk_use_percent
-        arg: /backup
       - type: memory_free
       - type: load_1m
       - type: load_5m
