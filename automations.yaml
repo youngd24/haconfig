@@ -1,3 +1,5 @@
+# automations.yaml
+#
 - id: ha_backup
   alias: push HA configuration to GitHub repo
   trigger:
