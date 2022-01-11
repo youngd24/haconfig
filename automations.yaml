@@ -1,1 +1,10 @@
-[]
+- id: ha_backup
+  alias: push HA configuration to GitHub repo
+  trigger:
+  - at: '23:23:23'
+    platform: time
+  action:
+  - data:
+      addon: a0d7b954_ssh
+      input: /config/ha_gitpush.sh
+    service: hassio.addon_stdin
