@@ -1,0 +1,83 @@
+################################################################################
+#
+# garage-temperature
+#
+# Configuration for a Wemos D1 Mini
+#
+################################################################################
+
+# Change these per device, use these as "variables" throughout this config
+substitutions:
+  plugtag: "garage-temperature"
+  devicename: "Garage Temp/RH Sensor"
+
+# Core ESPHome settings
+esphome:
+  name: ${plugtag}
+  comment: ${devicename}
+  board: d1_mini
+  platform: ESP8266
+
+# Wireless network, look in secrets.yaml for those
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "${plugtag}"
+    password: !secret ap_password
+
+# Enable captive portl if wifi ever changes
+captive_portal:
+
+# Enable Home Assistant API
+api:
+  password: !secret api_password
+
+# Set an Over The Air (ota) password
+ota:
+  password: !secret ota_password
+
+# Enable logging
+logger:
+  level: DEBUG
+
+# Internal LED used for ESPHome status
+status_led:
+  pin:GPIO13
+
+# Sync time from the HA API we're talking to
+time:
+  - platform: homeassistant
+    id: my_time
+
+# Sensors
+sensor:
+
+    # DHT 11 temp/rh sensor
+  - platform: dht
+    pin: D1
+    model: DHT11
+    temperature:
+      name: "${devicename} Temperature"
+    humidity:
+      name: "${devicename} Humidity"
+    update_interval: 60s
+  
+    # Wifi signal
+  - platform: wifi_signal
+    name: "${devicename} WiFi Signal"
+    update_interval: 60s
+
+# Virtual switch to turn on the locator LED
+light:
+  - platform: binary
+    name: "${devicename} Locator"
+    output: led_output
+
+# Locator LED
+output:
+  - id: led_output
+    platform: gpio
+    pin: D7
