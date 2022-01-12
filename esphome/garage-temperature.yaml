@@ -43,9 +43,9 @@ ota:
 logger:
   level: DEBUG
 
-# Internal LED used for ESPHome status
+# Internal (onboard) LED used for ESPHome status
 status_led:
-  pin:GPIO13
+  pin: GPIO2
 
 # Sync time from the HA API we're talking to
 time:
@@ -58,7 +58,7 @@ sensor:
     # DHT 11 temp/rh sensor
   - platform: dht
     pin: D1
-    model: DHT11
+    model: DHT22
     temperature:
       name: "${devicename} Temperature"
     humidity:
