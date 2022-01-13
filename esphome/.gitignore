@@ -1,5 +1,11 @@
-# Gitignore settings for ESPHome
-# This is an example and may include too much for your use-case.
-# You can modify this file to suit your needs.
-/.esphome/
-/secrets.yaml
+#################################################################################
+#
+# esphome/.gitignore
+#
+# Files to not include (ignore) for Git commits in this directory.
+# This one is set up as an implicit include all and exclude those named
+#
+#################################################################################
+#
+.esphome/
+secrets.yaml
