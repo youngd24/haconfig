@@ -113,3 +113,18 @@ output:
   - id: led_output
     platform: gpio
     pin: D7
+
+# i2c setup
+i2c:
+  sda: D1
+  scl: D2
+
+# 128x64 ssd1306 display
+display:
+  - platform: ssd1306_i2c
+    model: "SSD1306 128x64"
+    #reset_pin: D0
+    address: 0x3C
+    lambda: |-
+      // For example, draw a line from [x=0,y=0] to [x=50,y=50]
+      it.line(0, 0, 50, 50);
