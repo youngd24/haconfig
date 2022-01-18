@@ -65,9 +65,9 @@ switch:
   - platform: gpio
     name: "${devicename}"
     pin:
-      number: D1
+      number: D7
     id: led01
-    restore_mode: ALWAYS_OFF
+#    restore_mode: ALWAYS_OFF
 
 # Binary sensors
 binary_sensor:
@@ -77,7 +77,7 @@ binary_sensor:
   # debounce 10ms
   - platform: gpio
     pin:
-      number: D6
+      number: D5
       mode:
         input: true
     name: "${devicename} btn01"
@@ -89,9 +89,27 @@ binary_sensor:
     on_release:
       then:
         - switch.turn_off: led01
+        
+  # button 02 on the board
+  # pulldown type (hardware), normal is false|off|0
+  # debounce 10ms
+  - platform: gpio
+    pin:
+      number: D6
+      mode:
+        input: true
+    name: "${devicename} btn02"
+    filters:
+      - delayed_on: 10ms
+    on_press:
+      then:
+        - switch.turn_on: led01
+    on_release:
+      then:
+        - switch.turn_off: led01        
 
 # For testing
 output:
   - id: led_output
     platform: gpio
-    pin: D1
+    pin: D7
