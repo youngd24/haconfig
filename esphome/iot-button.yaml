@@ -1,15 +1,15 @@
 ################################################################################
 #
-# iot-button
+# iot-key
 #
-# Configuration for a Wemos D1 Mini IoT button
+# Configuration for a Wemos D1 Mini IoT fob like device
 #
 ################################################################################
 
 # Change these per device, use these as "variables" throughout this config
 substitutions:
-  plugtag: "iot-button"
-  devicename: "D1 Mini IoT Button"
+  plugtag: "iot-key"
+  devicename: "D1 Mini IoT key fob"
 
 # Core ESPHome settings
 esphome:
@@ -60,10 +60,12 @@ sensor:
     name: "${devicename} WiFi Signal"
     update_interval: 60s
 
+# switch
 switch:
   - platform: gpio
     name: "${devicename}"
-    pin: D1
+    pin:
+      number: D1
     id: led01
     restore_mode: ALWAYS_OFF
 
@@ -76,7 +78,6 @@ binary_sensor:
   - platform: gpio
     pin:
       number: D6
-#      inverted: true
       mode:
         input: true
     name: "${devicename} btn01"
