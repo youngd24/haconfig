@@ -1,0 +1,93 @@
+################################################################################
+#
+# iot-button
+#
+# Configuration for a Wemos D1 Mini IoT button
+#
+################################################################################
+
+# Change these per device, use these as "variables" throughout this config
+substitutions:
+  plugtag: "iot-button"
+  devicename: "D1 Mini IoT Button"
+
+# Core ESPHome settings
+esphome:
+  name: ${plugtag}
+  comment: ${devicename}
+  board: d1_mini
+  platform: ESP8266
+
+# Wireless network, look in secrets.yaml for those
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "${plugtag}"
+    password: !secret ap_password
+
+# Enable captive portl if wifi ever changes
+captive_portal:
+
+# Enable Home Assistant API
+api:
+  password: !secret api_password
+
+# Set an Over The Air (ota) password
+ota:
+  password: !secret ota_password
+
+# Enable logging
+logger:
+  level: DEBUG
+
+# Internal (onboard) LED used for ESPHome status
+status_led:
+  pin: GPIO2
+
+# Sync time from the HA API we're talking to
+time:
+  - platform: homeassistant
+    id: my_time
+
+# Sensors
+sensor:
+
+    # Wifi signal
+  - platform: wifi_signal
+    name: "${devicename} WiFi Signal"
+    update_interval: 60s
+
+switch:
+  - platform: gpio
+    name: "${devicename}"
+    pin: D1
+    id: led01
+    restore_mode: ALWAYS_OFF
+
+# Binary sensors
+binary_sensor:
+
+  # button 01 on the board
+  # pulldown type (hardware), normal is false|off|0
+  # debounce 10ms
+  - platform: gpio
+    pin:
+      number: D6
+      inverted: true
+      mode:
+        input: true
+    name: "${devicename} Button"
+    filters:
+      - delayed_on: 10ms
+    on_press:
+      then:
+        - switch.turn_on: led01
+
+#
+output:
+  - id: led_output
+    platform: gpio
+    pin: D1
