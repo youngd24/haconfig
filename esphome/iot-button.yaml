@@ -76,17 +76,20 @@ binary_sensor:
   - platform: gpio
     pin:
       number: D6
-      inverted: true
+#      inverted: true
       mode:
         input: true
-    name: "${devicename} Button"
+    name: "${devicename} btn01"
     filters:
       - delayed_on: 10ms
     on_press:
       then:
         - switch.turn_on: led01
+    on_release:
+      then:
+        - switch.turn_off: led01
 
-#
+# For testing
 output:
   - id: led_output
     platform: gpio
