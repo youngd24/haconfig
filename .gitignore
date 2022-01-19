@@ -21,9 +21,11 @@
 #!.ssh/
 #!id_rsa*
 
-# Include NodeRed but exclude the lock file it uses
+# Include NodeRed but exclude the temp/lock files it uses
 !node-red/
 node-red/package-lock.json
+node-red/.flows.json.backup
+node-red/node-red-contrib-home-assistant-websocket.json
 
 # Include custom components
 !custom_components/
