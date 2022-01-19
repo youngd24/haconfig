@@ -25,6 +25,9 @@
 !node-red/
 node-red/package-lock.json
 
+# Include custom components
+!custom_components/
+
 # Include ESPHome, that directory has its own .gitignore as well
 !esphome/
 
