@@ -62,12 +62,20 @@ sensor:
 
 # switch
 switch:
+
+  # Hook for the green LED (led01)
   - platform: gpio
     name: "${devicename}"
     pin:
       number: D7
     id: led01
-#    restore_mode: ALWAYS_OFF
+    
+    # Hook for the red LED (led02)
+  - platform: gpio
+    name: "${devicename}"
+    pin:
+      number: D8
+    id: led02
 
 # Binary sensors
 binary_sensor:
@@ -103,16 +111,23 @@ binary_sensor:
       - delayed_on: 10ms
     on_press:
       then:
-        - switch.turn_on: led01
+        - switch.turn_on: led02
     on_release:
       then:
-        - switch.turn_off: led01        
+        - switch.turn_off: led02
 
-# For testing
+# Outputs
 output:
-  - id: led_output
+
+  # Green LED on the board
+  - id: green_led
     platform: gpio
     pin: D7
+    
+    # Red LED on the board
+  - id: red_led
+    platform: gpio
+    pin: D8
 
 # i2c setup
 i2c:
