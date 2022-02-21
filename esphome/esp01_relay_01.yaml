@@ -1,0 +1,62 @@
+################################################################################
+#
+# ESP01 Relay Module 01
+#
+# Configuration for ESP01 Relay board
+#
+################################################################################
+
+# Change these per device, use these as "variables" throughout this config
+substitutions:
+  plugtag: "esp01-relay-01"
+  devicename: "ESP01 Relay 01"
+
+# Core ESPHome settings
+esphome:
+  name: ${plugtag}
+  comment: ${devicename}
+  platform: ESP8266
+  board: esp01_1m
+
+# Wireless network, look in secrets.yaml for those
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "${plugtag}"
+    password: !secret ap_password
+
+# Enable captive portal if wifi ever changes
+captive_portal:
+
+# Enable Home Assistant API
+api:
+    password: !secret api_password
+
+# Set an Over The Air (ota) password
+ota:
+    password: !secret ota_password
+
+# Enable logging
+logger:
+
+# Internal LED on the S31 used for ESPHome status
+status_led:
+  pin: GPIO1
+  
+# Enable time component to reset energy at midnight
+# This will sync the time from the HA API we're talking to
+time:
+  - platform: homeassistant
+    id: my_time
+    
+
+switch:
+  - platform: gpio
+    name: "${devicename}"
+    #icon: mdi:radiator
+    pin: GPIO0
+    id: relay
+

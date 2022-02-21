@@ -9,7 +9,7 @@
 # Change these per device, use these as "variables" throughout this config
 substitutions:
   plugtag: "hako-soldering-iron"
-  devicename: "Lab Hako Soldering Iron"
+  devicename: "Hako Soldering Iron"
 
 # Core ESPHome settings
 esphome:
