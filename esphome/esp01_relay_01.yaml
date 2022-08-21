@@ -43,20 +43,26 @@ ota:
 logger:
 
 # Internal LED on the S31 used for ESPHome status
-status_led:
-  pin: GPIO1
+# status_led:
+#   pin: GPIO1
   
 # Enable time component to reset energy at midnight
 # This will sync the time from the HA API we're talking to
 time:
   - platform: homeassistant
     id: my_time
-    
 
+# Sensors
+sensor:
+
+    # Send our WiFi signal
+  - platform: wifi_signal
+    name: "${devicename} WiFi Signal"
+    update_interval: 60s
+    
+# Internal relay switch
 switch:
   - platform: gpio
     name: "${devicename}"
-    #icon: mdi:radiator
     pin: GPIO0
     id: relay
-

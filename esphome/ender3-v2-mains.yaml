@@ -8,8 +8,8 @@
 
 # Change these per device, use these as "variables" throughout this config
 substitutions:
-  plugtag: "enter-printer-s31"
-  devicename: "Ender Printer Smart Outlet"
+  plugtag: "ender3-v2-mains"
+  devicename: "Ender 3 V2 Printer Smart Outlet"
 
 # Core ESPHome settings
 esphome:
@@ -132,10 +132,10 @@ sensor:
 #        # Furthermore it corrects 0.91W for the power usage of the plug.
 #        - lambda: if (x < (2 + 0.91)) return 0; else return (x - 0.91);
 
-# The "switch" to turn the heater [S]on/off
+# The "switch" to turn the printer [S]on/off
 switch:
   - platform: gpio
     name: "${devicename}"
-    icon: mdi:radiator
+    icon: mdi:switch
     pin: GPIO12
     id: relay
