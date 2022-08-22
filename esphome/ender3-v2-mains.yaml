@@ -58,6 +58,12 @@ time:
   - platform: homeassistant
     id: my_time
     
+# MQTT config
+mqtt:
+  broker: 192.168.1.135
+  username: mqttuser
+  password: !secret mqtt_password
+    
 # The outside button on the S31
 binary_sensor:
   - platform: gpio

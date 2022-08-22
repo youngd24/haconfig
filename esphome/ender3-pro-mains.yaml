@@ -1,15 +1,15 @@
 ################################################################################
 #
-# basement-heater-sonoff-s31
+# ender3-pro-mains.yaml
 #
-# Configuration for a Sonoff S31 smart switch
+# Configuration for the Ender 3 Pro Printer
 #
 ################################################################################
 
 # Change these per device, use these as "variables" throughout this config
 substitutions:
-  plugtag: "basement-heater-sonoff-s31"
-  devicename: "Basement Heater Sonoff Smart Switch"
+  plugtag: "ender3-pro-mains"
+  devicename: "Ender 3 Pro Mains"
 
 # Core ESPHome settings
 esphome:
@@ -136,6 +136,6 @@ sensor:
 switch:
   - platform: gpio
     name: "${devicename}"
-    icon: mdi:radiator
+    icon: mdi:switch
     pin: GPIO12
     id: relay
