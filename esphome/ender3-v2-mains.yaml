@@ -9,7 +9,7 @@
 # Change these per device, use these as "variables" throughout this config
 substitutions:
   plugtag: "ender3-v2-mains"
-  devicename: "Ender 3 V2 Printer"
+  devicename: "Ender 3 V2 Mains"
 
 # Core ESPHome settings
 esphome:
